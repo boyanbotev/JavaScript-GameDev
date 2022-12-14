@@ -61,13 +61,17 @@ export function animateBackgrounds(){
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
     // Update each layer
+    drawLayers();
+
+    // Trigger next frame
+    requestAnimationFrame(animateBackgrounds);
+}
+
+function drawLayers() {
     layers.forEach(layer => {
         layer.update();
         layer.draw();
     });
-
-    // Trigger next frame
-    requestAnimationFrame(animateBackgrounds);
 }
 
 export function updateBackgroundSpeed(gs){
