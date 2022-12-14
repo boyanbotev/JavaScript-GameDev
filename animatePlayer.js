@@ -1,6 +1,4 @@
 let playerState = 'run';
-
-// Duplicated code
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 
@@ -10,7 +8,7 @@ const spriteWidth = 575;
 const spriteHeight = 523;
 
 let gameFrame = 0;
-const staggerFrames = 5;
+let staggerFrames = 5;
 const spriteAnimations = [];
 const animationStates = [
    {
@@ -54,6 +52,7 @@ const animationStates = [
     frames: 4,
    },
 ];
+// For each animation state, get location for each frame
 animationStates.forEach((state, index) => {
     let frames = {
         loc: [],
@@ -72,10 +71,15 @@ export function animate(){
     let frameX = spriteWidth * position;
     let frameY = spriteAnimations[playerState].loc[position].y;
 
-    ctx.drawImage(playerImage, frameX, frameY, spriteWidth, spriteHeight, 0, 64, 
-        spriteWidth, spriteHeight);
+    ctx.drawImage(playerImage, frameX, frameY, spriteWidth, spriteHeight, 200, 325, 
+        spriteWidth/2, spriteHeight/2);
 
     gameFrame++;
     requestAnimationFrame(animate);
     console.log("Animate player");
+}
+
+export function updatePlayerSpeed(sf){
+    let modifier = 20;
+    staggerFrames = modifier/sf;
 }
